@@ -2,6 +2,15 @@ var pageInteractor = (function () {
     function pageInteractor() {
     }
     
+     /**
+     * As name implies this method can be used to execute a js function after certain condition is met. The condition as function is passed as a param
+     * that returns boolean upon called.
+     * @param {function} inCondition, a function that returns a boolean
+     * @param {function} handler, a call back to execute after inCondition retuned a true
+     * @param {number} timeLimit, duration in milliseconds after which checking for inCondition stops
+     * @param {boolean} executeAfterTimeLimit, if value {true} passed, handler is executed after timelimit , by default it is false
+     * @param {number} inInterval,in milliseconds, interval between checking the conition 
+     */
     pageInteractor.executeAfterCondition = function (inCondition, handler, timeLimit, executeAfterTimeLimit, inInterval) {
         if (executeAfterTimeLimit === void 0) { executeAfterTimeLimit = false; }
         var x = typeof inCondition;
@@ -59,6 +68,10 @@ var pageInteractor = (function () {
         }, timeLimit);
     };
     
+     /**
+     * Returns value for a query string that present in the current url
+     * @param {string} queryName, a query string for which to get the value if exists from location.search
+     */    
     pageInteractor.getQueryValueByName = function (queryName) {
         if (typeof window.location.search === "undefined") {
             return null;
